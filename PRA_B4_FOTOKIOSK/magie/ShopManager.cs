@@ -83,5 +83,19 @@ namespace PRA_B4_FOTOKIOSK.magie
             }
             return id;
         }
+        public static void CheckoutProduct()
+        {
+            KioskProduct selectedProduct = GetSelectedProduct();
+            int? fotoId = GetFotoId();
+            int? amount = GetAmount();
+
+            if (selectedProduct != null && fotoId.HasValue && amount.HasValue)
+            {
+                decimal totalPrice = selectedProduct.Price * amount.Value;
+                string receiptText = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
+                                     $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
+                AddShopReceipt(receiptText);
+            }
+        }
     }
 }
