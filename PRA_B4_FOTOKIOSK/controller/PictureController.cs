@@ -22,25 +22,39 @@ namespace PRA_B4_FOTOKIOSK.controller
         // Start methode die wordt aangeroepen wanneer de foto pagina opent.
         public void Start()
         {
-
-            // Initializeer de lijst met fotos
-            // WAARSCHUWING. ZONDER FILTER LAADT DIT ALLES!
-            // foreach is een for-loop die door een array loopt
-            foreach (string dir in Directory.GetDirectories(@"../../../fotos"))
+            // Zet de dir op goede plek
+            var now = DateTime.Now;
+            int day = (int)now.DayOfWeek;
+            string dir = "";
+            if (day == 0)
             {
-                /**
-                 * dir string is de map waar de fotos in staan. Bijvoorbeeld:
-                 * \fotos\0_Zondag
-                 */
-                foreach (string file in Directory.GetFiles(dir))
-                {
-                    /**
-                     * file string is de file van de foto. Bijvoorbeeld:
-                     * \fotos\0_Zondag\10_05_30_id8824.jpg
-                     */
-                    PicturesToDisplay.Add(new KioskPhoto() { Id = 0, Source = file });
-                }
+                dir = "../../../fotos/0_Zondag";
+            }else if (day == 1)
+            {
+                dir = "../../../fotos/1_Maandag";
+            }else if (day == 2)
+            {
+                dir = "../../../fotos/2_Dinsdag";
+            }else if (day == 3)
+            {
+                dir = "../../../fotos/3_Woensdag";
+            }else if (day == 4)
+            {
+                dir = "../../../fotos/4_Donderdag";
+            }else if (day == 5)
+            {
+                dir = "../../../fotos/5_Vrijdag";
+            }else if (day == 6)
+            {
+                dir = "../../../fotos/6_Zaterdag";
             }
+            
+            // haalt photo op
+            foreach (string file in Directory.GetFiles(dir))
+            {
+                PicturesToDisplay.Add(new KioskPhoto() { Id = 0, Source = file });
+            }
+
 
             // Update de fotos
             PictureManager.UpdatePictures(PicturesToDisplay);
