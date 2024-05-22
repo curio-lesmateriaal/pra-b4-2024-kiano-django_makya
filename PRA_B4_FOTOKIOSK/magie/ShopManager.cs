@@ -91,7 +91,7 @@ namespace PRA_B4_FOTOKIOSK.magie
 
             if (selectedProduct != null && fotoId.HasValue && amount.HasValue)
             {
-                decimal totalPrice = selectedProduct.Price * amount.Value;
+                double totalPrice = selectedProduct.Price * amount.Value;
                 string receiptText = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
                                      $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
                 AddShopReceipt(receiptText);
