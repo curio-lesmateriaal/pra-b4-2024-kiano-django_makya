@@ -19,7 +19,6 @@ namespace PRA_B4_FOTOKIOSK.controller
         public List<KioskPhoto> PicturesToDisplay = new List<KioskPhoto>();
         public List<string> PhotoInList = new List<string>();
         
-        
         // Start methode die wordt aangeroepen wanneer de foto pagina opent.
         public void Start()
         {
@@ -73,18 +72,18 @@ namespace PRA_B4_FOTOKIOSK.controller
                         hour--;
                     }
                     
-                    string formattedString = string.Format("{0:D2}_{1:D2}_{2:D2}_", hour, minute, second);
-                    if (file.Contains(formattedString) && !PhotoInList.Contains(formattedString))
+                    string timeDateString = string.Format("{0:D2}_{1:D2}_{2:D2}_", hour, minute, second);
+                    if (file.Contains(timeDateString) && !PhotoInList.Contains(timeDateString))
                     {
                         PicturesToDisplay.Add(new KioskPhoto() { Id = 0, Source = file });
-                        PhotoInList.Add(formattedString);
-                        formattedString = string.Format("{0:D2}_{1:D2}_{2:D2}_", hour, minute + 1, second);
+                        PhotoInList.Add(timeDateString);
+                        timeDateString = string.Format("{0:D2}_{1:D2}_{2:D2}_", hour, minute + 1, second);
                         foreach (string file2 in Directory.GetFiles(dir))
                         {
-                            if (file2.Contains(formattedString) && !PhotoInList.Contains(formattedString))
+                            if (file2.Contains(timeDateString) && !PhotoInList.Contains(timeDateString))
                             {
                                 PicturesToDisplay.Add(new KioskPhoto() { Id = 0, Source = file2 });
-                                PhotoInList.Add(formattedString);
+                                PhotoInList.Add(timeDateString);
                             }
                         }
                     }
