@@ -17,6 +17,7 @@ namespace PRA_B4_FOTOKIOSK.controller
 
         // De lijst met fotos die we laten zien
         public List<KioskPhoto> PicturesToDisplay = new List<KioskPhoto>();
+        public List<string> PhotoInList = new List<string>();
         
         
         // Start methode die wordt aangeroepen wanneer de foto pagina opent.
@@ -71,16 +72,21 @@ namespace PRA_B4_FOTOKIOSK.controller
                         minute = 59;
                         hour--;
                     }
-                    if (hour < 0)
-                    { 
-                        hour = 23;
-                    }
                     
                     string formattedString = string.Format("{0:D2}_{1:D2}_{2:D2}_", hour, minute, second);
-                    
-                    if (file.Contains(formattedString))
+                    if (file.Contains(formattedString) && !PhotoInList.Contains(formattedString))
                     {
                         PicturesToDisplay.Add(new KioskPhoto() { Id = 0, Source = file });
+                        PhotoInList.Add(formattedString);
+                        formattedString = string.Format("{0:D2}_{1:D2}_{2:D2}_", hour, minute + 1, second);
+                        foreach (string file2 in Directory.GetFiles(dir))
+                        {
+                            if (file2.Contains(formattedString) && !PhotoInList.Contains(formattedString))
+                            {
+                                PicturesToDisplay.Add(new KioskPhoto() { Id = 0, Source = file2 });
+                                PhotoInList.Add(formattedString);
+                            }
+                        }
                     }
                 }
             }
