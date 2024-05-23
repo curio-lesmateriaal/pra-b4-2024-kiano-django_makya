@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Xml.Serialization;
 
 namespace PRA_B4_FOTOKIOSK.magie
 {
@@ -95,14 +97,22 @@ namespace PRA_B4_FOTOKIOSK.magie
                 string receiptText = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
                                      $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
                 AddShopReceipt(receiptText);
-
-                string filepath = "bonBestand.txt";
-                string content = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
-                                 $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
-
-                File.AppendAllText(filepath, content);
-                Console.WriteLine("Tekst succesvol aan het bestand toegevoegd.");
             }
+
+        }
+        public static void AddToReceipt()
+        {
+            KioskProduct selectedProduct = GetSelectedProduct();
+            int? fotoId = GetFotoId();
+            int? amount = GetAmount();
+
+            double totalPrice = selectedProduct.Price * amount.Value;
+            string filePath = "bonBestand.txt";
+            string content = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
+                             $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
+
+            File.WriteAllText(filePath, content);
+                
         }
     }
 }
