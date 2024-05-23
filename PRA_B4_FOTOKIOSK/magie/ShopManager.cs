@@ -95,6 +95,13 @@ namespace PRA_B4_FOTOKIOSK.magie
                 string receiptText = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
                                      $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
                 AddShopReceipt(receiptText);
+
+                string filepath = "bonBestand.txt";
+                string content = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
+                                 $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
+
+                File.AppendAllText(filepath, content);
+                Console.WriteLine("Tekst succesvol aan het bestand toegevoegd.");
             }
         }
     }
