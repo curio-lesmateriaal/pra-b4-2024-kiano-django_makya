@@ -22,9 +22,10 @@ namespace PRA_B4_FOTOKIOSK.controller
         // Start methode die wordt aangeroepen wanneer de foto pagina opent.
         public void Start()
         {
-            // Zet de dir op goede plek
             var now = DateTime.Now;
             int day = (int)now.DayOfWeek;
+            
+            // Zet de dir op goede plek
             string dir = "";
             if (day == 0)
             {
@@ -52,9 +53,37 @@ namespace PRA_B4_FOTOKIOSK.controller
             // haalt photo op
             foreach (string file in Directory.GetFiles(dir))
             {
-                PicturesToDisplay.Add(new KioskPhoto() { Id = 0, Source = file });
-            }
+                int hour = now.Hour;
+                int minute = now.Minute - 2;
+                int second = now.Second;
+                
+                for (int i = 0; i < 1800; i++)
+                {
+                    second--;
+                    if (second < 0)
+                    {
+                        second = 59;
+                        minute--;
+                    }
 
+                    if (minute < 0)
+                    {
+                        minute = 59;
+                        hour--;
+                    }
+                    if (hour < 0)
+                    { 
+                        hour = 23;
+                    }
+                    
+                    string formattedString = string.Format("{0:D2}_{1:D2}_{2:D2}_", hour, minute, second);
+                    
+                    if (file.Contains(formattedString))
+                    {
+                        PicturesToDisplay.Add(new KioskPhoto() { Id = 0, Source = file });
+                    }
+                }
+            }
 
             // Update de fotos
             PictureManager.UpdatePictures(PicturesToDisplay);
