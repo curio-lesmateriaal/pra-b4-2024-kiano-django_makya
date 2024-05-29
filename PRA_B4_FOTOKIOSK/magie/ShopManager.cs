@@ -85,32 +85,22 @@ namespace PRA_B4_FOTOKIOSK.magie
             }
             return id;
         }
+
         public static void CheckoutProduct()
         {
-            KioskProduct selectedProduct = GetSelectedProduct();
-            int? fotoId = GetFotoId();
-            int? amount = GetAmount();
-
-            if (selectedProduct != null && fotoId.HasValue && amount.HasValue)
-            {
-                double totalPrice = selectedProduct.Price * amount.Value;
-                string receiptText = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
-                                     $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
-                AddShopReceipt(receiptText);
-            }
-
+            OrderedProduct.CheckoutProduct();
         }
         public static void AddToReceipt()
         {
             KioskProduct selectedProduct = GetSelectedProduct();
             int? fotoId = GetFotoId();
             int? amount = GetAmount();
-
+        
             double totalPrice = selectedProduct.Price * amount.Value;
             string filePath = "bonBestand.txt";
             string content = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
                              $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
-
+        
             File.WriteAllText(filePath, content);
                 
         }

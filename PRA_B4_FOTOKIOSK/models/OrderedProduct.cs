@@ -1,0 +1,23 @@
+using PRA_B4_FOTOKIOSK.magie;
+
+namespace PRA_B4_FOTOKIOSK.models;
+
+
+    public class OrderedProduct
+    {
+        public static void CheckoutProduct()
+        {
+            KioskProduct selectedProduct = ShopManager.GetSelectedProduct();
+            int? fotoId = ShopManager.GetFotoId();
+            int? amount = ShopManager.GetAmount();
+
+            if (selectedProduct != null && fotoId.HasValue && amount.HasValue)
+            {
+                double totalPrice = selectedProduct.Price * amount.Value;
+                string receiptText = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
+                                     $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
+                ShopManager.AddShopReceipt(receiptText);
+            }
+
+        }
+    }
