@@ -43,7 +43,7 @@ namespace PRA_B4_FOTOKIOSK.controller
         // Wordt uitgevoerd wanneer er op de Toevoegen knop is geklikt
         public void AddButtonClick()
         {
-
+            ShopManager.CheckoutProduct();
         }
 
         // Wordt uitgevoerd wanneer er op de Resetten knop is geklikt
