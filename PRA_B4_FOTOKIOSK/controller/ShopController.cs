@@ -55,7 +55,7 @@ namespace PRA_B4_FOTOKIOSK.controller
         // Wordt uitgevoerd wanneer er op de Save knop is geklikt
         public void SaveButtonClick()
         {
-            ShopManager.AddShopReceipt();
+            ShopManager.AddShopReceipt("Bon Gemaakt!");
         }
 
     }
