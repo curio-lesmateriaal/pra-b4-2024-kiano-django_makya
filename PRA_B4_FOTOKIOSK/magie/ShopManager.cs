@@ -15,8 +15,7 @@ namespace PRA_B4_FOTOKIOSK.magie
 {
     public class ShopManager
     {
-
-        public static List<KioskProduct> Products = new List<KioskProduct>();    
+        public static List<KioskProduct> Products = new List<KioskProduct>();
         public static Home Instance { get; set; }
 
         public static void SetShopPriceList(string text)
@@ -61,6 +60,7 @@ namespace PRA_B4_FOTOKIOSK.magie
             {
                 if (product.Name == selected) return product;
             }
+
             return null;
         }
 
@@ -72,6 +72,7 @@ namespace PRA_B4_FOTOKIOSK.magie
             {
                 id = amount;
             }
+
             return id;
         }
 
@@ -83,6 +84,7 @@ namespace PRA_B4_FOTOKIOSK.magie
             {
                 id = amount;
             }
+
             return id;
         }
 
@@ -90,9 +92,10 @@ namespace PRA_B4_FOTOKIOSK.magie
         {
             OrderedProduct.CheckoutProduct();
         }
+
         public static void AddToReceipt()
         {
-           OrderedProduct.AddToReceipt();
+            OrderedProduct.AddToReceipt();
         }
     }
 }

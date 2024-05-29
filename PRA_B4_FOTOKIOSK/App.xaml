@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:PRA_B4_FOTOKIOSK"
              StartupUri="Home.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>
