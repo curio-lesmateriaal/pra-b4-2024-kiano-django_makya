@@ -92,17 +92,7 @@ namespace PRA_B4_FOTOKIOSK.magie
         }
         public static void AddToReceipt()
         {
-            KioskProduct selectedProduct = GetSelectedProduct();
-            int? fotoId = GetFotoId();
-            int? amount = GetAmount();
-        
-            double totalPrice = selectedProduct.Price * amount.Value;
-            string filePath = "bonBestand.txt";
-            string content = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
-                             $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
-        
-            File.WriteAllText(filePath, content);
-                
+           OrderedProduct.AddToReceipt();
         }
     }
 }

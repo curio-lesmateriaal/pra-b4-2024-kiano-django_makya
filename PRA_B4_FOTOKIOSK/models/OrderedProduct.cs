@@ -1,3 +1,4 @@
+using System.IO;
 using PRA_B4_FOTOKIOSK.magie;
 
 namespace PRA_B4_FOTOKIOSK.models;
@@ -19,5 +20,19 @@ namespace PRA_B4_FOTOKIOSK.models;
                 ShopManager.AddShopReceipt(receiptText);
             }
 
+        }
+
+        public static void AddToReceipt()
+        {
+            KioskProduct selectedProduct = ShopManager.GetSelectedProduct();
+            int? fotoId = ShopManager.GetFotoId();
+            int? amount = ShopManager.GetAmount();
+        
+            double totalPrice = selectedProduct.Price * amount.Value;
+            string filePath = "bonBestand.txt";
+            string content = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
+                             $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
+        
+            File.WriteAllText(filePath, content);
         }
     }
