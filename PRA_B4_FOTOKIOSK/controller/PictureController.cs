@@ -27,28 +27,13 @@ namespace PRA_B4_FOTOKIOSK.controller
             
             // Zet de dir op goede plek
             string dir = "";
-            if (day == 0)
-            {
-                dir = "../../../fotos/0_Zondag";
-            }else if (day == 1)
-            {
-                dir = "../../../fotos/1_Maandag";
-            }else if (day == 2)
-            {
-                dir = "../../../fotos/2_Dinsdag";
-            }else if (day == 3)
-            {
-                dir = "../../../fotos/3_Woensdag";
-            }else if (day == 4)
-            {
-                dir = "../../../fotos/4_Donderdag";
-            }else if (day == 5)
-            {
-                dir = "../../../fotos/5_Vrijdag";
-            }else if (day == 6)
-            {
-                dir = "../../../fotos/6_Zaterdag";
-            }
+            if (day == 0) dir = "../../../fotos/0_Zondag";
+            else if (day == 1) dir = "../../../fotos/1_Maandag";
+            else if (day == 2) dir = "../../../fotos/2_Dinsdag";
+            else if (day == 3) dir = "../../../fotos/3_Woensdag";
+            else if (day == 4) dir = "../../../fotos/4_Donderdag";
+            else if (day == 5) dir = "../../../fotos/5_Vrijdag";
+            else if (day == 6) dir = "../../../fotos/6_Zaterdag";
             
             // haalt photo op
             foreach (string file in Directory.GetFiles(dir))
