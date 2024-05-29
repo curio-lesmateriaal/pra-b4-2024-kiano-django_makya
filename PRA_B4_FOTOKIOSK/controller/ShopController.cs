@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,6 +57,8 @@ namespace PRA_B4_FOTOKIOSK.controller
         public void SaveButtonClick()
         {
             ShopManager.AddShopReceipt("Bon Gemaakt!");
+            ShopManager.AddToReceipt();
+
         }
 
     }

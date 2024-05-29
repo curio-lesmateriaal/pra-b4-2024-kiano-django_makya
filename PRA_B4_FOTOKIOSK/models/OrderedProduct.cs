@@ -27,12 +27,10 @@ namespace PRA_B4_FOTOKIOSK.models;
             KioskProduct selectedProduct = ShopManager.GetSelectedProduct();
             int? fotoId = ShopManager.GetFotoId();
             int? amount = ShopManager.GetAmount();
-        
             double totalPrice = selectedProduct.Price * amount.Value;
-            string filePath = "bonBestand.txt";
             string content = $"Foto ID: {fotoId.Value}\nProduct: {selectedProduct.Name}\n" +
                              $"Aantal: {amount.Value}\nTotaalprijs: €{totalPrice:F2}\n\n";
         
-            File.WriteAllText(filePath, content);
+            File.WriteAllText("../../../magie/bonBestand.txt", content);
         }
     }
