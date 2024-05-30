@@ -13,7 +13,6 @@ namespace PRA_B4_FOTOKIOSK.magie
 {
     public class SearchManager
     {
-
         public static Home Instance { get; set; }
 
         public static void SetPicture(string path)
