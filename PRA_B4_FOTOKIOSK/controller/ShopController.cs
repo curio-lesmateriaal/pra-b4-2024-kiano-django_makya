@@ -49,10 +49,7 @@ namespace PRA_B4_FOTOKIOSK.controller
         // Wordt uitgevoerd wanneer er op de Resetten knop is geklikt
         public void ResetButtonClick()
         {
-<<<<<<< HEAD
-            
-=======
->>>>>>> 2f2626c23157376d0daa4161e64acb10ba1b56f0
+
         }
 
         // Wordt uitgevoerd wanneer er op de Save knop is geklikt
