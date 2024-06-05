@@ -1,5 +1,5 @@
-Foto ID: 1
+Foto ID: 2345
 Product: Mok met Foto
-Aantal: 1
-Totaalprijs: €9.95
+Aantal: 2
+Totaalprijs: €19,90
 

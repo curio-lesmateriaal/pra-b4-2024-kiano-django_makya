@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace PRA_B4_FOTOKIOSK.controller
 {
@@ -43,7 +44,7 @@ namespace PRA_B4_FOTOKIOSK.controller
             // haalt photo op
             foreach (string file in Directory.GetFiles(dir))
             {
-                string[] search = SearchManager.GetSearchInput().Split("_");
+                string[] search = SearchManager.GetSearchInput().Split(":");
                 int hour = int.Parse(search[0]);
                 int minute = int.Parse(search[1]);
                 int second = int.Parse(search[2]);
@@ -53,6 +54,9 @@ namespace PRA_B4_FOTOKIOSK.controller
                 {
                     foundSearch = file;
                     SearchManager.SetPicture(foundSearch);
+                    string[] fileInfo = Path.GetFileNameWithoutExtension(file).Split('_');
+                    string imageInfo = $"tijd: {fileInfo[0]}:{fileInfo[1]}:{fileInfo[2]}\nId: {fileInfo[3]}\nTijd: {DateTime.Today}";
+                    SearchManager.SetSearchImageInfo(imageInfo);
                 }
             }
             
